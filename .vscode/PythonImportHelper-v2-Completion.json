@@ -266,6 +266,22 @@
         "documentation": {}
     },
     {
+        "label": "APIClient",
+        "importPath": "rest_framework.test",
+        "description": "rest_framework.test",
+        "isExtraImport": true,
+        "detail": "rest_framework.test",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -357,7 +373,7 @@
         "kind": 6,
         "importPath": "blog.tests",
         "description": "blog.tests",
-        "peekOfCode": "class Test_Create_Post(TestCase):\n    @classmethod\n    def setUpTestData(cls):\n        test_category = Category.objects.create(name=\"django\")\n        testuser1 = User.objects.create_user(\n            username=\"test_user1\", password=\"123456789\"\n        )\n        testuser1.save()\n        test_post = Post.objects.create(\n            category_id=1,",
+        "peekOfCode": "class Test_Create_Post(TestCase):\n    @classmethod\n    def setUpTestData(cls):\n        test_category = Category.objects.create(name=\"django\")\n        testuser1 = User.objects.create_user(\n            username=\"test_user1\", password=\"123456789\"\n        )\n        test_post = Post.objects.create(\n            category_id=1,\n            title=\"Post Title\",",
         "detail": "blog.tests",
         "documentation": {}
     },
@@ -402,7 +418,7 @@
         "kind": 6,
         "importPath": "blog_api.tests",
         "description": "blog_api.tests",
-        "peekOfCode": "class PostTests(APITestCase):\n    def test_view_posts(self):\n        \"\"\"\n        Ensure we can view all objects.\n        \"\"\"\n        url = reverse(\"blog_api:listcreate\")\n        response = self.client.get(url, format=\"json\")\n        self.assertEqual(response.status_code, status.HTTP_200_OK)\n    def test_create_account(self):\n        \"\"\"",
+        "peekOfCode": "class PostTests(APITestCase):\n    def test_view_posts(self):\n        \"\"\"\n        Ensure we can view all objects.\n        \"\"\"\n        url = reverse(\"blog_api:listcreate\")\n        response = self.client.get(url, format=\"json\")\n        self.assertEqual(response.status_code, status.HTTP_200_OK)\n    def test_create_post(self):\n        \"\"\"",
         "detail": "blog_api.tests",
         "documentation": {}
     },
@@ -425,11 +441,20 @@
         "documentation": {}
     },
     {
+        "label": "PostUserWritePermission",
+        "kind": 6,
+        "importPath": "blog_api.views",
+        "description": "blog_api.views",
+        "peekOfCode": "class PostUserWritePermission(BasePermission):\n    message = \"Editing posts is restricted to the author only.\"\n    def has_object_permission(self, request, view, obj):\n        if request.method in SAFE_METHODS:\n            return True\n        return obj.author == request.user\nclass PostList(generics.ListCreateAPIView):\n    permission_classes = [IsAuthenticatedOrReadOnly]\n    queryset = Post.objects.all()\n    serializer_class = PostSerializer",
+        "detail": "blog_api.views",
+        "documentation": {}
+    },
+    {
         "label": "PostList",
         "kind": 6,
         "importPath": "blog_api.views",
         "description": "blog_api.views",
-        "peekOfCode": "class PostList(generics.ListCreateAPIView):\n    queryset = Post.objects.all()\n    serializer_class = PostSerializer\nclass PostDetail(generics.RetrieveDestroyAPIView):\n    queryset = Post.objects.all()\n    serializer_class = PostSerializer",
+        "peekOfCode": "class PostList(generics.ListCreateAPIView):\n    permission_classes = [IsAuthenticatedOrReadOnly]\n    queryset = Post.objects.all()\n    serializer_class = PostSerializer\nclass PostDetail(generics.RetrieveUpdateDestroyAPIView, PostUserWritePermission):\n    permission_classes = [PostUserWritePermission]\n    queryset = Post.objects.all()\n    serializer_class = PostSerializer\n\"\"\" Concrete View Classes\n#CreateAPIView",
         "detail": "blog_api.views",
         "documentation": {}
     },
@@ -438,7 +463,7 @@
         "kind": 6,
         "importPath": "blog_api.views",
         "description": "blog_api.views",
-        "peekOfCode": "class PostDetail(generics.RetrieveDestroyAPIView):\n    queryset = Post.objects.all()\n    serializer_class = PostSerializer",
+        "peekOfCode": "class PostDetail(generics.RetrieveUpdateDestroyAPIView, PostUserWritePermission):\n    permission_classes = [PostUserWritePermission]\n    queryset = Post.objects.all()\n    serializer_class = PostSerializer\n\"\"\" Concrete View Classes\n#CreateAPIView\nUsed for create-only endpoints.\n#ListAPIView\nUsed for read-only endpoints to represent a collection of model instances.\n#RetrieveAPIView",
         "detail": "blog_api.views",
         "documentation": {}
     },
@@ -564,7 +589,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nREST_FRAMEWORK = {",
+        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Rest Framework Permissions:",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -573,7 +598,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nREST_FRAMEWORK = {\n    \"DEFAULT_PERMISSION_CLASSES\": [",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Rest Framework Permissions:\n# AllowAny",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -582,7 +607,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nREST_FRAMEWORK = {\n    \"DEFAULT_PERMISSION_CLASSES\": [\n        \"rest_framework.permissions.AllowAny\",",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Rest Framework Permissions:\n# AllowAny\n# IsAuthenticated",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -591,7 +616,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "STATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nREST_FRAMEWORK = {\n    \"DEFAULT_PERMISSION_CLASSES\": [\n        \"rest_framework.permissions.AllowAny\",\n    ]\n}\nCORS_ALLOWED_ORIGINS = [\"http://127.0.0.1:3000\", \"http://localhost:3000\"]",
+        "peekOfCode": "STATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Rest Framework Permissions:\n# AllowAny\n# IsAuthenticated\n# IsAdminUser\n# IsAuthenticatedOrReadOnly\nREST_FRAMEWORK = {",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -600,7 +625,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nREST_FRAMEWORK = {\n    \"DEFAULT_PERMISSION_CLASSES\": [\n        \"rest_framework.permissions.AllowAny\",\n    ]\n}\nCORS_ALLOWED_ORIGINS = [\"http://127.0.0.1:3000\", \"http://localhost:3000\"]",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Rest Framework Permissions:\n# AllowAny\n# IsAuthenticated\n# IsAdminUser\n# IsAuthenticatedOrReadOnly\nREST_FRAMEWORK = {\n    \"DEFAULT_PERMISSION_CLASSES\": [\n        \"rest_framework.permissions.IsAuthenticatedOrReadOnly\",\n    ]",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -609,7 +634,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "REST_FRAMEWORK = {\n    \"DEFAULT_PERMISSION_CLASSES\": [\n        \"rest_framework.permissions.AllowAny\",\n    ]\n}\nCORS_ALLOWED_ORIGINS = [\"http://127.0.0.1:3000\", \"http://localhost:3000\"]",
+        "peekOfCode": "REST_FRAMEWORK = {\n    \"DEFAULT_PERMISSION_CLASSES\": [\n        \"rest_framework.permissions.IsAuthenticatedOrReadOnly\",\n    ]\n}\nCORS_ALLOWED_ORIGINS = [\"http://127.0.0.1:3000\", \"http://localhost:3000\"]",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -627,7 +652,7 @@
         "kind": 5,
         "importPath": "core.urls",
         "description": "core.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"\", include(\"blog.urls\", namespace=\"blog\")),\n    path(\"api/\", include(\"blog_api.urls\", namespace=\"blog_api\")),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"\", include(\"blog.urls\", namespace=\"blog\")),\n    path(\"api/\", include(\"blog_api.urls\", namespace=\"blog_api\")),\n    path(\"api-auth/\", include(\"rest_framework.urls\", namespace=\"rest_framework\")),\n]",
         "detail": "core.urls",
         "documentation": {}
     },
