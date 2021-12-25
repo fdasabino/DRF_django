@@ -507,6 +507,14 @@
         "documentation": {}
     },
     {
+        "label": "include_docs_urls",
+        "importPath": "rest_framework.documentation",
+        "description": "rest_framework.documentation",
+        "isExtraImport": true,
+        "detail": "rest_framework.documentation",
+        "documentation": {}
+    },
+    {
         "label": "TokenObtainPairView",
         "importPath": "rest_framework_simplejwt.views",
         "description": "rest_framework_simplejwt.views",
@@ -528,6 +536,14 @@
         "description": "rest_framework_simplejwt.views",
         "isExtraImport": true,
         "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "get_schema_view",
+        "importPath": "rest_framework.schemas",
+        "description": "rest_framework.schemas",
+        "isExtraImport": true,
+        "detail": "rest_framework.schemas",
         "documentation": {}
     },
     {
@@ -956,7 +972,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "REST_FRAMEWORK = {\n    \"DEFAULT_PERMISSION_CLASSES\": [\n        \"rest_framework.permissions.AllowAny\",\n    ],\n    \"DEFAULT_AUTHENTICATION_CLASSES\": (\n        \"rest_framework_simplejwt.authentication.JWTAuthentication\",\n    ),\n}\nCORS_ALLOWED_ORIGINS = [\"http://localhost:3000\"]\nSIMPLE_JWT = {",
+        "peekOfCode": "REST_FRAMEWORK = {\n    \"DEFAULT_PERMISSION_CLASSES\": [\n        \"rest_framework.permissions.AllowAny\",\n    ],\n    \"DEFAULT_AUTHENTICATION_CLASSES\": (\n        \"rest_framework_simplejwt.authentication.JWTAuthentication\",\n    ),\n    \"DEFAULT_SCHEMA_CLASS\": \"rest_framework.schemas.coreapi.AutoSchema\",\n}\nCORS_ALLOWED_ORIGINS = [\"http://localhost:3000\"]",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -983,7 +999,7 @@
         "kind": 5,
         "importPath": "core.urls",
         "description": "core.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"api/token/\", TokenObtainPairView.as_view(), name=\"token_obtain_pair\"),\n    path(\"api/token/refresh/\", TokenRefreshView.as_view(), name=\"token_refresh\"),\n    path(\"admin/\", admin.site.urls),\n    path(\"api/\", include(\"blog_api.urls\", namespace=\"blog_api\")),\n    path(\"api/user/\", include(\"users.urls\", namespace=\"users\")),\n    path(\"api-auth/\", include(\"rest_framework.urls\", namespace=\"rest_framework\")),\n    path(\"\", include(\"blog.urls\", namespace=\"blog\")),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"api/token/\", TokenObtainPairView.as_view(), name=\"token_obtain_pair\"),\n    path(\"api/token/refresh/\", TokenRefreshView.as_view(), name=\"token_refresh\"),\n    path(\"admin/\", admin.site.urls),\n    path(\"api/\", include(\"blog_api.urls\", namespace=\"blog_api\")),\n    path(\"api/user/\", include(\"users.urls\", namespace=\"users\")),\n    path(\"api-auth/\", include(\"rest_framework.urls\", namespace=\"rest_framework\")),\n    path(\"\", include(\"blog.urls\", namespace=\"blog\")),\n    path(\"docs/\", include_docs_urls(title=\"BlogAPI\")),\n    path(",
         "detail": "core.urls",
         "documentation": {}
     },

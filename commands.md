@@ -7,3 +7,5 @@ coverage html
 pip install djangorestframework
 pip install djangorestframework-simplejwt
 pip install django-cors-headers
+pip install pyyaml
+pip install coreapi
