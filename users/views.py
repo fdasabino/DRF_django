@@ -32,6 +32,5 @@ class BlacklistTokenUpdateView(APIView):
             token.blacklist()
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
+            print(" ------->Token Blacklisted successfully <-------------")
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
-    print(" ------->Token Blacklisted successfully <-------------")
