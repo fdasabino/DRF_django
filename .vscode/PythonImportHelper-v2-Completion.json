@@ -314,6 +314,14 @@
         "documentation": {}
     },
     {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "include",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -394,6 +402,14 @@
         "documentation": {}
     },
     {
+        "label": "filters",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
         "label": "serializers",
         "importPath": "rest_framework",
         "description": "rest_framework",
@@ -426,14 +442,6 @@
         "documentation": {}
     },
     {
-        "label": "urlpatterns",
-        "importPath": "blog.urls",
-        "description": "blog.urls",
-        "isExtraImport": true,
-        "detail": "blog.urls",
-        "documentation": {}
-    },
-    {
         "label": "DefaultRouter",
         "importPath": "rest_framework.routers",
         "description": "rest_framework.routers",
@@ -442,7 +450,23 @@
         "documentation": {}
     },
     {
-        "label": "*",
+        "label": "APIView",
+        "importPath": "rest_framework.views",
+        "description": "rest_framework.views",
+        "isExtraImport": true,
+        "detail": "rest_framework.views",
+        "documentation": {}
+    },
+    {
+        "label": "APIView",
+        "importPath": "rest_framework.views",
+        "description": "rest_framework.views",
+        "isExtraImport": true,
+        "detail": "rest_framework.views",
+        "documentation": {}
+    },
+    {
+        "label": "SAFE_METHODS",
         "importPath": "rest_framework.permissions",
         "description": "rest_framework.permissions",
         "isExtraImport": true,
@@ -458,7 +482,55 @@
         "documentation": {}
     },
     {
-        "label": "*",
+        "label": "IsAuthenticated",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "IsAuthenticatedOrReadOnly",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "BasePermission",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "IsAdminUser",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "DjangoModelPermissions",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "AllowAny",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
         "importPath": "rest_framework.response",
         "description": "rest_framework.response",
         "isExtraImport": true,
@@ -619,14 +691,6 @@
         "documentation": {}
     },
     {
-        "label": "APIView",
-        "importPath": "rest_framework.views",
-        "description": "rest_framework.views",
-        "isExtraImport": true,
-        "detail": "rest_framework.views",
-        "documentation": {}
-    },
-    {
         "label": "RefreshToken",
         "importPath": "rest_framework_simplejwt.tokens",
         "description": "rest_framework_simplejwt.tokens",
@@ -756,16 +820,7 @@
         "kind": 5,
         "importPath": "blog_api.urls",
         "description": "blog_api.urls",
-        "peekOfCode": "app_name = \"blog_api\"\nrouter = DefaultRouter()\nrouter.register(\"\", PostList, basename=\"post\")\nurlpatterns = router.urls",
-        "detail": "blog_api.urls",
-        "documentation": {}
-    },
-    {
-        "label": "router",
-        "kind": 5,
-        "importPath": "blog_api.urls",
-        "description": "blog_api.urls",
-        "peekOfCode": "router = DefaultRouter()\nrouter.register(\"\", PostList, basename=\"post\")\nurlpatterns = router.urls",
+        "peekOfCode": "app_name = \"blog_api\"\n# router = DefaultRouter()\n# router.register(\"\", PostList, basename=\"post\")\n# urlpatterns = router.urls\nurlpatterns = [\n    path(\"posts/\", PostDetail.as_view(), name=\"detailcreate\"),\n    path(\"search/\", PostSearch.as_view(), name=\"postsearch\"),\n    path(\"\", PostList.as_view(), name=\"listcreate\"),\n]",
         "detail": "blog_api.urls",
         "documentation": {}
     },
@@ -774,7 +829,7 @@
         "kind": 5,
         "importPath": "blog_api.urls",
         "description": "blog_api.urls",
-        "peekOfCode": "urlpatterns = router.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"posts/\", PostDetail.as_view(), name=\"detailcreate\"),\n    path(\"search/\", PostSearch.as_view(), name=\"postsearch\"),\n    path(\"\", PostList.as_view(), name=\"listcreate\"),\n]",
         "detail": "blog_api.urls",
         "documentation": {}
     },
@@ -783,7 +838,7 @@
         "kind": 6,
         "importPath": "blog_api.views",
         "description": "blog_api.views",
-        "peekOfCode": "class PostUserWritePermission(BasePermission):\n    message = \"Editing posts is restricted to the author only.\"\n    def has_object_permission(self, request, view, obj):\n        if request.method in SAFE_METHODS:\n            return True\n        return obj.author == request.user\nclass PostList(viewsets.ModelViewSet):\n    permission_classes = [PostUserWritePermission]\n    serializer_class = PostSerializer\n    def get_object(self, queryset=None, **kwargs):",
+        "peekOfCode": "class PostUserWritePermission(BasePermission):\n    message = \"Editing posts is restricted to the author only.\"\n    def has_object_permission(self, request, view, obj):\n        if request.method in SAFE_METHODS:\n            return True\n        return obj.author == request.user\n# User Filter\n# class PostList(generics.ListAPIView):\n#     permission_classes = [IsAuthenticated]\n#     serializer_class = PostSerializer",
         "detail": "blog_api.views",
         "documentation": {}
     },
@@ -792,7 +847,34 @@
         "kind": 6,
         "importPath": "blog_api.views",
         "description": "blog_api.views",
-        "peekOfCode": "class PostList(viewsets.ModelViewSet):\n    permission_classes = [PostUserWritePermission]\n    serializer_class = PostSerializer\n    def get_object(self, queryset=None, **kwargs):\n        item = self.kwargs.get(\"pk\")\n        return get_object_or_404(Post, slug=item)\n    # Define Custom Queryset\n    def get_queryset(self):\n        return Post.objects.all()\n\"\"\" Concrete View Classes",
+        "peekOfCode": "class PostList(generics.ListAPIView):\n    permission_classes = [IsAuthenticated]\n    serializer_class = PostSerializer\n    def get_queryset(self):\n        user = self.request.user\n        return Post.objects.filter(author=user)\nclass PostDetail(generics.ListAPIView):\n    serializer_class = PostSerializer\n    def get_queryset(self):\n        slug = self.request.query_params.get(\"slug\", None)",
+        "detail": "blog_api.views",
+        "documentation": {}
+    },
+    {
+        "label": "PostDetail",
+        "kind": 6,
+        "importPath": "blog_api.views",
+        "description": "blog_api.views",
+        "peekOfCode": "class PostDetail(generics.ListAPIView):\n    serializer_class = PostSerializer\n    def get_queryset(self):\n        slug = self.request.query_params.get(\"slug\", None)\n        print(slug)\n        return Post.objects.filter(slug=slug)\nclass PostListDetailfilter(generics.ListAPIView):\n    queryset = Post.objects.all()\n    serializer_class = PostSerializer\n    filter_backends = [filters.SearchFilter]",
+        "detail": "blog_api.views",
+        "documentation": {}
+    },
+    {
+        "label": "PostListDetailfilter",
+        "kind": 6,
+        "importPath": "blog_api.views",
+        "description": "blog_api.views",
+        "peekOfCode": "class PostListDetailfilter(generics.ListAPIView):\n    queryset = Post.objects.all()\n    serializer_class = PostSerializer\n    filter_backends = [filters.SearchFilter]\n    search_fields = [\"^slug\"]\n    # '^' Starts-with search.\n    # '=' Exact matches.\n    # '@' Full-text search. (Currently only supported Django's PostgreSQL backend.)\n    # '$' Regex search.\nclass PostSearch(generics.ListAPIView):",
+        "detail": "blog_api.views",
+        "documentation": {}
+    },
+    {
+        "label": "PostSearch",
+        "kind": 6,
+        "importPath": "blog_api.views",
+        "description": "blog_api.views",
+        "peekOfCode": "class PostSearch(generics.ListAPIView):\n    permission_classes = [AllowAny]\n    queryset = Post.objects.all()\n    serializer_class = PostSerializer\n    filter_backends = [filters.SearchFilter]\n    search_fields = [\"^slug\"]\n    # def get_object(self, queryset=None, **kwargs):\n    #     item = self.kwargs.get('pk')\n    #     return get_object_or_404(Post, slug=item)\n    # Define Custom Queryset",
         "detail": "blog_api.views",
         "documentation": {}
     },
