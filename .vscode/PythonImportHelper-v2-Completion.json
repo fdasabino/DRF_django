@@ -178,6 +178,14 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
         "label": "TestCase",
         "importPath": "django.test",
         "description": "django.test",
@@ -483,6 +491,14 @@
         "documentation": {}
     },
     {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
         "label": "timedelta",
         "importPath": "datetime",
         "description": "datetime",
@@ -491,11 +507,11 @@
         "documentation": {}
     },
     {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
+        "label": "get_schema_view",
+        "importPath": "rest_framework.schemas",
+        "description": "rest_framework.schemas",
         "isExtraImport": true,
-        "detail": "pathlib",
+        "detail": "rest_framework.schemas",
         "documentation": {}
     },
     {
@@ -528,14 +544,6 @@
         "description": "rest_framework_simplejwt.views",
         "isExtraImport": true,
         "detail": "rest_framework_simplejwt.views",
-        "documentation": {}
-    },
-    {
-        "label": "get_schema_view",
-        "importPath": "rest_framework.schemas",
-        "description": "rest_framework.schemas",
-        "isExtraImport": true,
-        "detail": "rest_framework.schemas",
         "documentation": {}
     },
     {
@@ -730,7 +738,16 @@
         "kind": 6,
         "importPath": "blog_api.serializers",
         "description": "blog_api.serializers",
-        "peekOfCode": "class PostSerializer(serializers.ModelSerializer):\n    class Meta:\n        fields = (\"id\", \"title\", \"author\", \"slug\", \"excerpt\", \"content\", \"status\")\n        model = Post",
+        "peekOfCode": "class PostSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Post\n        fields = (\n            \"category\",\n            \"id\",\n            \"title\",\n            \"slug\",\n            \"author\",\n            \"excerpt\",",
+        "detail": "blog_api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "UserRegisterSerializer",
+        "kind": 6,
+        "importPath": "blog_api.serializers",
+        "description": "blog_api.serializers",
+        "peekOfCode": "class UserRegisterSerializer(serializers.ModelSerializer):\n    email = serializers.EmailField(required=True)\n    username = serializers.CharField(required=True)\n    password = serializers.CharField(min_length=8, write_only=True)\n    class Meta:\n        model = settings.AUTH_USER_MODEL\n        fields = (\"email\", \"user_name\", \"first_name\")\n        extra_kwargs = {\"password\": {\"write_only\": True}}",
         "detail": "blog_api.serializers",
         "documentation": {}
     },
@@ -838,7 +855,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = \"django-insecure-26z2x-917rpmruup$1@_yrqr*hhs4suxbym#t1*#yuscbmx%w!\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = \"apuvicmef^(!j8gx&clu0u(!8m0r^etok^l0)kc!---#(i5=dt\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -847,7 +864,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "SECRET_KEY = \"django-insecure-26z2x-917rpmruup$1@_yrqr*hhs4suxbym#t1*#yuscbmx%w!\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
+        "peekOfCode": "SECRET_KEY = \"apuvicmef^(!j8gx&clu0u(!8m0r^etok^l0)kc!---#(i5=dt\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"rest_framework\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -856,7 +873,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"rest_framework\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -865,7 +882,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"blog\",",
+        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"rest_framework\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -874,7 +891,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"blog\",\n    \"blog_api\",\n    \"users\",",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"rest_framework\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"blog\",\n    \"blog_api\",",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -883,7 +900,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "MIDDLEWARE = [\n    \"corsheaders.middleware.CorsMiddleware\",\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n]",
+        "peekOfCode": "MIDDLEWARE = [\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"corsheaders.middleware.CorsMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n]",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -892,7 +909,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "ROOT_URLCONF = \"core.urls\"\nTEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [BASE_DIR, \"templates\"],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",",
+        "peekOfCode": "ROOT_URLCONF = \"core.urls\"\nTEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [BASE_DIR / \"templates\"],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -901,7 +918,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "TEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [BASE_DIR, \"templates\"],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",\n                \"django.contrib.auth.context_processors.auth\",",
+        "peekOfCode": "TEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [BASE_DIR / \"templates\"],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",\n                \"django.contrib.auth.context_processors.auth\",",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -910,7 +927,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "WSGI_APPLICATION = \"core.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.sqlite3\",\n        \"NAME\": BASE_DIR / \"db.sqlite3\",\n    }\n}\n# Password validation",
+        "peekOfCode": "WSGI_APPLICATION = \"core.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/3.1/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.sqlite3\",\n        \"NAME\": BASE_DIR / \"db.sqlite3\",\n    }\n}\n# Password validation",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -919,7 +936,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.sqlite3\",\n        \"NAME\": BASE_DIR / \"db.sqlite3\",\n    }\n}\n# Password validation\n# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {",
+        "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.sqlite3\",\n        \"NAME\": BASE_DIR / \"db.sqlite3\",\n    }\n}\n# Password validation\n# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -937,7 +954,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
+        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_L10N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.1/howto/static-files/\nSTATIC_URL = \"/static/\"\n# Permissions:\n# AllowAny",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -946,7 +963,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Custom user model",
+        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_L10N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.1/howto/static-files/\nSTATIC_URL = \"/static/\"\n# Permissions:\n# AllowAny\n# IsAuthenticated",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -955,7 +972,16 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Custom user model\nAUTH_USER_MODEL = \"users.NewUser\"",
+        "peekOfCode": "USE_I18N = True\nUSE_L10N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.1/howto/static-files/\nSTATIC_URL = \"/static/\"\n# Permissions:\n# AllowAny\n# IsAuthenticated\n# IsAdminUser",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_L10N",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "USE_L10N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.1/howto/static-files/\nSTATIC_URL = \"/static/\"\n# Permissions:\n# AllowAny\n# IsAuthenticated\n# IsAdminUser\n# IsAuthenticatedOrReadOnly",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -964,7 +990,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Custom user model\nAUTH_USER_MODEL = \"users.NewUser\"\n# Rest Framework Permissions:",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.1/howto/static-files/\nSTATIC_URL = \"/static/\"\n# Permissions:\n# AllowAny\n# IsAuthenticated\n# IsAdminUser\n# IsAuthenticatedOrReadOnly\nCORS_ALLOWED_ORIGINS = [\"http://localhost:3000\"]",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -973,34 +999,7 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "STATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Custom user model\nAUTH_USER_MODEL = \"users.NewUser\"\n# Rest Framework Permissions:\n# AllowAny\n# IsAuthenticated\n# IsAdminUser",
-        "detail": "core.settings",
-        "documentation": {}
-    },
-    {
-        "label": "DEFAULT_AUTO_FIELD",
-        "kind": 5,
-        "importPath": "core.settings",
-        "description": "core.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Custom user model\nAUTH_USER_MODEL = \"users.NewUser\"\n# Rest Framework Permissions:\n# AllowAny\n# IsAuthenticated\n# IsAdminUser\n# IsAuthenticatedOrReadOnly\nREST_FRAMEWORK = {\n    \"DEFAULT_PERMISSION_CLASSES\": [",
-        "detail": "core.settings",
-        "documentation": {}
-    },
-    {
-        "label": "AUTH_USER_MODEL",
-        "kind": 5,
-        "importPath": "core.settings",
-        "description": "core.settings",
-        "peekOfCode": "AUTH_USER_MODEL = \"users.NewUser\"\n# Rest Framework Permissions:\n# AllowAny\n# IsAuthenticated\n# IsAdminUser\n# IsAuthenticatedOrReadOnly\nREST_FRAMEWORK = {\n    \"DEFAULT_PERMISSION_CLASSES\": [\n        \"rest_framework.permissions.AllowAny\",\n    ],",
-        "detail": "core.settings",
-        "documentation": {}
-    },
-    {
-        "label": "REST_FRAMEWORK",
-        "kind": 5,
-        "importPath": "core.settings",
-        "description": "core.settings",
-        "peekOfCode": "REST_FRAMEWORK = {\n    \"DEFAULT_PERMISSION_CLASSES\": [\n        \"rest_framework.permissions.AllowAny\",\n    ],\n    \"DEFAULT_AUTHENTICATION_CLASSES\": (\n        \"rest_framework_simplejwt.authentication.JWTAuthentication\",\n    ),\n    \"DEFAULT_SCHEMA_CLASS\": \"rest_framework.schemas.coreapi.AutoSchema\",\n}\nCORS_ALLOWED_ORIGINS = [\"http://localhost:3000\"]",
+        "peekOfCode": "STATIC_URL = \"/static/\"\n# Permissions:\n# AllowAny\n# IsAuthenticated\n# IsAdminUser\n# IsAuthenticatedOrReadOnly\nCORS_ALLOWED_ORIGINS = [\"http://localhost:3000\"]\n# Custom user model\nAUTH_USER_MODEL = \"users.NewUser\"\nSIMPLE_JWT = {",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -1009,7 +1008,16 @@
         "kind": 5,
         "importPath": "core.settings",
         "description": "core.settings",
-        "peekOfCode": "CORS_ALLOWED_ORIGINS = [\"http://localhost:3000\"]\nSIMPLE_JWT = {\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(minutes=1),\n    \"REFRESH_TOKEN_LIFETIME\": timedelta(days=10),\n    \"ROTATE_REFRESH_TOKENS\": True,\n    \"BLACKLIST_AFTER_ROTATION\": True,\n    \"ALGORITHM\": \"HS256\",\n    \"SIGNING_KEY\": SECRET_KEY,\n    \"VERIFYING_KEY\": None,\n    \"AUTH_HEADER_TYPES\": (\"JWT\",),",
+        "peekOfCode": "CORS_ALLOWED_ORIGINS = [\"http://localhost:3000\"]\n# Custom user model\nAUTH_USER_MODEL = \"users.NewUser\"\nSIMPLE_JWT = {\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(minutes=1),\n    \"REFRESH_TOKEN_LIFETIME\": timedelta(days=10),\n    \"ROTATE_REFRESH_TOKENS\": True,\n    \"BLACKLIST_AFTER_ROTATION\": True,\n    \"ALGORITHM\": \"HS256\",\n    \"SIGNING_KEY\": SECRET_KEY,",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_USER_MODEL",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "AUTH_USER_MODEL = \"users.NewUser\"\nSIMPLE_JWT = {\n    \"ACCESS_TOKEN_LIFETIME\": timedelta(minutes=1),\n    \"REFRESH_TOKEN_LIFETIME\": timedelta(days=10),\n    \"ROTATE_REFRESH_TOKENS\": True,\n    \"BLACKLIST_AFTER_ROTATION\": True,\n    \"ALGORITHM\": \"HS256\",\n    \"SIGNING_KEY\": SECRET_KEY,\n    \"VERIFYING_KEY\": None,\n    \"AUTH_HEADER_TYPES\": (\"JWT\",),",
         "detail": "core.settings",
         "documentation": {}
     },
@@ -1023,11 +1031,20 @@
         "documentation": {}
     },
     {
+        "label": "REST_FRAMEWORK",
+        "kind": 5,
+        "importPath": "core.settings",
+        "description": "core.settings",
+        "peekOfCode": "REST_FRAMEWORK = {\n    \"DEFAULT_SCHEMA_CLASS\": \"rest_framework.schemas.coreapi.AutoSchema\",\n    \"DEFAULT_PERMISSION_CLASSES\": [\n        \"rest_framework.permissions.AllowAny\",\n    ],\n    \"DEFAULT_AUTHENTICATION_CLASSES\": [\n        \"rest_framework_simplejwt.authentication.JWTAuthentication\"\n    ],\n}",
+        "detail": "core.settings",
+        "documentation": {}
+    },
+    {
         "label": "urlpatterns",
         "kind": 5,
         "importPath": "core.urls",
         "description": "core.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"api/token/\", TokenObtainPairView.as_view(), name=\"token_obtain_pair\"),\n    path(\"api/token/refresh/\", TokenRefreshView.as_view(), name=\"token_refresh\"),\n    path(\"admin/\", admin.site.urls),\n    path(\"api/\", include(\"blog_api.urls\", namespace=\"blog_api\")),\n    path(\"api/user/\", include(\"users.urls\", namespace=\"users\")),\n    path(\"api-auth/\", include(\"rest_framework.urls\", namespace=\"rest_framework\")),\n    path(\"\", include(\"blog.urls\", namespace=\"blog\")),\n    path(\"docs/\", include_docs_urls(title=\"BlogAPI\")),\n    path(",
+        "peekOfCode": "urlpatterns = [\n    # API Token Management\n    path(\"api/token/\", TokenObtainPairView.as_view(), name=\"token_obtain_pair\"),\n    path(\"api/token/refresh/\", TokenRefreshView.as_view(), name=\"token_refresh\"),\n    # Project URLs\n    path(\"admin/\", admin.site.urls),\n    path(\"\", include(\"blog.urls\", namespace=\"blog\")),\n    # User Management\n    path(\"api/user/\", include(\"users.urls\", namespace=\"users\")),\n    # Blog_API Application",
         "detail": "core.urls",
         "documentation": {}
     },
@@ -1081,7 +1098,7 @@
         "kind": 6,
         "importPath": "users.models",
         "description": "users.models",
-        "peekOfCode": "class NewUser(AbstractBaseUser, PermissionsMixin):\n    email = models.EmailField(_(\"email address\"), unique=True)\n    user_name = models.CharField(max_length=150, unique=True)\n    first_name = models.CharField(max_length=150, blank=True)\n    start_date = models.DateTimeField(default=timezone.now)\n    about = models.TextField(_(\"about\"), max_length=500, blank=True)\n    is_staff = models.BooleanField(default=False)\n    # to be changed after email service is setup\n    is_active = models.BooleanField(default=True)\n    objects = CustomAccountManager()",
+        "peekOfCode": "class NewUser(AbstractBaseUser, PermissionsMixin):\n    email = models.EmailField(_(\"email address\"), unique=True)\n    user_name = models.CharField(max_length=150, unique=True)\n    first_name = models.CharField(max_length=150, blank=True)\n    start_date = models.DateTimeField(default=timezone.now)\n    about = models.TextField(_(\"about\"), max_length=500, blank=True)\n    is_staff = models.BooleanField(default=False)\n    is_active = models.BooleanField(default=True)\n    objects = CustomAccountManager()\n    USERNAME_FIELD = \"email\"",
         "detail": "users.models",
         "documentation": {}
     },
@@ -1099,7 +1116,7 @@
         "kind": 5,
         "importPath": "users.urls",
         "description": "users.urls",
-        "peekOfCode": "app_name = \"users\"\nurlpatterns = [\n    path(\"register/\", CustomUserCreate.as_view(), name=\"create_user\"),\n    path(\"logout/blacklist/\", BlacklistTokenUpdateView.as_view(), name=\"blacklist\"),\n]",
+        "peekOfCode": "app_name = \"users\"\nurlpatterns = [\n    path(\"create/\", CustomUserCreate.as_view(), name=\"create_user\"),\n    path(\"logout/blacklist/\", BlacklistTokenUpdateView.as_view(), name=\"blacklist\"),\n]",
         "detail": "users.urls",
         "documentation": {}
     },
@@ -1108,7 +1125,7 @@
         "kind": 5,
         "importPath": "users.urls",
         "description": "users.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"register/\", CustomUserCreate.as_view(), name=\"create_user\"),\n    path(\"logout/blacklist/\", BlacklistTokenUpdateView.as_view(), name=\"blacklist\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"create/\", CustomUserCreate.as_view(), name=\"create_user\"),\n    path(\"logout/blacklist/\", BlacklistTokenUpdateView.as_view(), name=\"blacklist\"),\n]",
         "detail": "users.urls",
         "documentation": {}
     },
@@ -1117,7 +1134,7 @@
         "kind": 6,
         "importPath": "users.views",
         "description": "users.views",
-        "peekOfCode": "class CustomUserCreate(APIView):\n    permission_classes = [AllowAny]\n    def post(self, request, format=\"json\"):\n        serializer = CustomUserSerializer(data=request.data)\n        if serializer.is_valid():\n            user = serializer.save()\n            if user:\n                json = serializer.data\n                print(\" -------> User created successfully <-------------\")\n                return Response(json, status=status.HTTP_201_CREATED)",
+        "peekOfCode": "class CustomUserCreate(APIView):\n    permission_classes = [AllowAny]\n    def post(self, request, format=\"json\"):\n        serializer = CustomUserSerializer(data=request.data)\n        if serializer.is_valid():\n            user = serializer.save()\n            if user:\n                json = serializer.data\n                return Response(json, status=status.HTTP_201_CREATED)\n        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)",
         "detail": "users.views",
         "documentation": {}
     },

@@ -16,7 +16,6 @@ class CustomUserCreate(APIView):
             user = serializer.save()
             if user:
                 json = serializer.data
-                print(" -------> User created successfully <-------------")
                 return Response(json, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -32,5 +31,4 @@ class BlacklistTokenUpdateView(APIView):
             token.blacklist()
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
-            print(" ------->Token Blacklisted successfully <-------------")
             return Response(status=status.HTTP_400_BAD_REQUEST)

@@ -19,9 +19,10 @@ class Post(models.Model):
         ("draft", "Draft"),
         ("published", "Published"),
     )
+
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
     title = models.CharField(max_length=250)
-    excerpt = models.TextField(null=True)
+    excerpt = models.TextField(null=False)
     content = models.TextField()
     slug = models.SlugField(max_length=250, unique_for_date="published")
     published = models.DateTimeField(default=timezone.now)
