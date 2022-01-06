@@ -10,6 +10,7 @@ class PostSerializer(serializers.ModelSerializer):
             "category",
             "id",
             "title",
+            "image",
             "slug",
             "author",
             "excerpt",
@@ -19,7 +20,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-
+    
     email = serializers.EmailField(required=True)
     username = serializers.CharField(required=True)
     password = serializers.CharField(min_length=8, write_only=True)
